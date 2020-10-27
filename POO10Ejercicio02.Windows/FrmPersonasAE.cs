@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using POO10Ejercicio02.Datos;
 using POO10Ejercicio02.Entidades;
 using POO10Ejercicio02.Entidades.Emuns;
 
@@ -7,11 +8,13 @@ namespace POO10Ejercicio02.Windows
 {
     public partial class FrmPersonasAE : Form
     {
-        public FrmPersonasAE()
+        public FrmPersonasAE(RepositorioDePersonas repositorio)
         {
             InitializeComponent();
+            this.repositorio = repositorio;
         }
 
+        private RepositorioDePersonas repositorio;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -80,6 +83,10 @@ namespace POO10Ejercicio02.Windows
             {
                 valido = false;
                 errorProvider1.SetError(DniTextBox,"Debe ingresar un DNI");
+            }else if (repositorio.ExisteDni(DniTextBox.Text))
+            {
+                valido = false;
+                errorProvider1.SetError(DniTextBox,"DND repetido");
             }
             return valido;
         }

@@ -21,7 +21,7 @@ namespace POO10Ejercicio02.Windows
         private RepositorioDePersonas repositorio;
         private void NuevoToolStripButton_Click(object sender, EventArgs e)
         {
-            FrmPersonasAE frm=new FrmPersonasAE(){Text = "Agregar una Persona"};
+            FrmPersonasAE frm=new FrmPersonasAE(repositorio){Text = "Agregar una Persona"};
             DialogResult dr = frm.ShowDialog(this);
             if (dr==DialogResult.OK)
             {
@@ -31,6 +31,9 @@ namespace POO10Ejercicio02.Windows
                 SetearFila(r, persona);
                 AgregarFila(r);
                 MostrarCantidadDePersonas();
+                MessageBox.Show("Registro agregado", "Mensaje", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
             }
         }
 
@@ -85,6 +88,29 @@ namespace POO10Ejercicio02.Windows
                 SetearFila(r,persona);
                 AgregarFila(r);
             }
+        }
+
+        private void BorrarToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (PersonasDataGridView.SelectedRows.Count==0)
+            {
+                return;
+            }
+
+            DataGridViewRow r = PersonasDataGridView.SelectedRows[0];
+            Persona persona =(Persona) r.Tag;
+            DialogResult dr = MessageBox.Show($"¿Desea borrar a {persona.ToString()}?",
+                "Confirmar Baja",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
+            if (dr==DialogResult.No)
+            {
+                return;
+            }
+            repositorio.Borrar(persona);
+            PersonasDataGridView.Rows.Remove(r);
+            MessageBox.Show("Registro borrado", "Mensaje", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

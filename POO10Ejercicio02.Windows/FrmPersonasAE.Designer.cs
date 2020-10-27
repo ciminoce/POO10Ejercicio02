@@ -98,7 +98,7 @@
             this.FechaNacimientoDateTimePicker.Location = new System.Drawing.Point(192, 167);
             this.FechaNacimientoDateTimePicker.Name = "FechaNacimientoDateTimePicker";
             this.FechaNacimientoDateTimePicker.Size = new System.Drawing.Size(109, 23);
-            this.FechaNacimientoDateTimePicker.TabIndex = 2;
+            this.FechaNacimientoDateTimePicker.TabIndex = 3;
             // 
             // groupBox1
             // 
@@ -117,7 +117,7 @@
             this.MasculinoRadioButton.Location = new System.Drawing.Point(128, 39);
             this.MasculinoRadioButton.Name = "MasculinoRadioButton";
             this.MasculinoRadioButton.Size = new System.Drawing.Size(80, 19);
-            this.MasculinoRadioButton.TabIndex = 4;
+            this.MasculinoRadioButton.TabIndex = 5;
             this.MasculinoRadioButton.Text = "Masculino";
             this.MasculinoRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -128,7 +128,7 @@
             this.FemeninoRadioButton.Location = new System.Drawing.Point(17, 39);
             this.FemeninoRadioButton.Name = "FemeninoRadioButton";
             this.FemeninoRadioButton.Size = new System.Drawing.Size(78, 19);
-            this.FemeninoRadioButton.TabIndex = 0;
+            this.FemeninoRadioButton.TabIndex = 4;
             this.FemeninoRadioButton.TabStop = true;
             this.FemeninoRadioButton.Text = "Femenino";
             this.FemeninoRadioButton.UseVisualStyleBackColor = true;
@@ -149,14 +149,14 @@
             this.LocalidadesComboBox.Location = new System.Drawing.Point(180, 330);
             this.LocalidadesComboBox.Name = "LocalidadesComboBox";
             this.LocalidadesComboBox.Size = new System.Drawing.Size(278, 23);
-            this.LocalidadesComboBox.TabIndex = 5;
+            this.LocalidadesComboBox.TabIndex = 6;
             // 
             // OkButton
             // 
             this.OkButton.Location = new System.Drawing.Point(64, 381);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(122, 48);
-            this.OkButton.TabIndex = 6;
+            this.OkButton.TabIndex = 7;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
@@ -166,7 +166,7 @@
             this.CancelarButton.Location = new System.Drawing.Point(353, 381);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(122, 48);
-            this.CancelarButton.TabIndex = 7;
+            this.CancelarButton.TabIndex = 8;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.UseVisualStyleBackColor = true;
             this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
@@ -190,7 +190,7 @@
             this.DniTextBox.MaxLength = 8;
             this.DniTextBox.Name = "DniTextBox";
             this.DniTextBox.Size = new System.Drawing.Size(266, 23);
-            this.DniTextBox.TabIndex = 1;
+            this.DniTextBox.TabIndex = 2;
             // 
             // FrmPersonasAE
             // 
@@ -210,7 +210,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NombreTextBox);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(565, 489);
+            this.MinimumSize = new System.Drawing.Size(565, 489);
             this.Name = "FrmPersonasAE";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmPersonasAE";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -35,7 +35,14 @@
             this.EditarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.OrdenarToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.OrdenarAZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrdenarZAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FiltrarToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.FiltrarSexoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FitrarSexoFemeninoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltrarSexoMasculinoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltrarLocalidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltrarLocalidadesToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.ActualizarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SalirToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -94,6 +101,7 @@
             this.BorrarToolStripButton.Size = new System.Drawing.Size(44, 59);
             this.BorrarToolStripButton.Text = "Borrar";
             this.BorrarToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BorrarToolStripButton.Click += new System.EventHandler(this.BorrarToolStripButton_Click);
             // 
             // EditarToolStripButton
             // 
@@ -112,6 +120,9 @@
             // 
             // OrdenarToolStripDropDownButton
             // 
+            this.OrdenarToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OrdenarAZToolStripMenuItem,
+            this.OrdenarZAToolStripMenuItem});
             this.OrdenarToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("OrdenarToolStripDropDownButton.Image")));
             this.OrdenarToolStripDropDownButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.OrdenarToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -120,8 +131,25 @@
             this.OrdenarToolStripDropDownButton.Text = "Ordenar";
             this.OrdenarToolStripDropDownButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // OrdenarAZToolStripMenuItem
+            // 
+            this.OrdenarAZToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OrdenarAZToolStripMenuItem.Image")));
+            this.OrdenarAZToolStripMenuItem.Name = "OrdenarAZToolStripMenuItem";
+            this.OrdenarAZToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.OrdenarAZToolStripMenuItem.Text = "A-Z";
+            // 
+            // OrdenarZAToolStripMenuItem
+            // 
+            this.OrdenarZAToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OrdenarZAToolStripMenuItem.Image")));
+            this.OrdenarZAToolStripMenuItem.Name = "OrdenarZAToolStripMenuItem";
+            this.OrdenarZAToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.OrdenarZAToolStripMenuItem.Text = "Z-A";
+            // 
             // FiltrarToolStripDropDownButton
             // 
+            this.FiltrarToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FiltrarSexoToolStripMenuItem,
+            this.FiltrarLocalidadToolStripMenuItem});
             this.FiltrarToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("FiltrarToolStripDropDownButton.Image")));
             this.FiltrarToolStripDropDownButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FiltrarToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -129,6 +157,44 @@
             this.FiltrarToolStripDropDownButton.Size = new System.Drawing.Size(53, 59);
             this.FiltrarToolStripDropDownButton.Text = "Filtrar";
             this.FiltrarToolStripDropDownButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // FiltrarSexoToolStripMenuItem
+            // 
+            this.FiltrarSexoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FitrarSexoFemeninoToolStripMenuItem,
+            this.FiltrarSexoMasculinoToolStripMenuItem});
+            this.FiltrarSexoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("FiltrarSexoToolStripMenuItem.Image")));
+            this.FiltrarSexoToolStripMenuItem.Name = "FiltrarSexoToolStripMenuItem";
+            this.FiltrarSexoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.FiltrarSexoToolStripMenuItem.Text = "Sexo";
+            // 
+            // FitrarSexoFemeninoToolStripMenuItem
+            // 
+            this.FitrarSexoFemeninoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("FitrarSexoFemeninoToolStripMenuItem.Image")));
+            this.FitrarSexoFemeninoToolStripMenuItem.Name = "FitrarSexoFemeninoToolStripMenuItem";
+            this.FitrarSexoFemeninoToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.FitrarSexoFemeninoToolStripMenuItem.Text = "Femenino";
+            // 
+            // FiltrarSexoMasculinoToolStripMenuItem
+            // 
+            this.FiltrarSexoMasculinoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("FiltrarSexoMasculinoToolStripMenuItem.Image")));
+            this.FiltrarSexoMasculinoToolStripMenuItem.Name = "FiltrarSexoMasculinoToolStripMenuItem";
+            this.FiltrarSexoMasculinoToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.FiltrarSexoMasculinoToolStripMenuItem.Text = "Masculino";
+            // 
+            // FiltrarLocalidadToolStripMenuItem
+            // 
+            this.FiltrarLocalidadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FiltrarLocalidadesToolStripComboBox});
+            this.FiltrarLocalidadToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("FiltrarLocalidadToolStripMenuItem.Image")));
+            this.FiltrarLocalidadToolStripMenuItem.Name = "FiltrarLocalidadToolStripMenuItem";
+            this.FiltrarLocalidadToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.FiltrarLocalidadToolStripMenuItem.Text = "Localidad";
+            // 
+            // FiltrarLocalidadesToolStripComboBox
+            // 
+            this.FiltrarLocalidadesToolStripComboBox.Name = "FiltrarLocalidadesToolStripComboBox";
+            this.FiltrarLocalidadesToolStripComboBox.Size = new System.Drawing.Size(121, 23);
             // 
             // ActualizarToolStripButton
             // 
@@ -151,7 +217,7 @@
             this.SalirToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.SalirToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SalirToolStripButton.Name = "SalirToolStripButton";
-            this.SalirToolStripButton.Size = new System.Drawing.Size(33, 59);
+            this.SalirToolStripButton.Size = new System.Drawing.Size(44, 59);
             this.SalirToolStripButton.Text = "Salir";
             this.SalirToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.SalirToolStripButton.Click += new System.EventHandler(this.SalirToolStripButton_Click);
@@ -179,14 +245,17 @@
             this.colLocalidad});
             this.PersonasDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PersonasDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.PersonasDataGridView.MultiSelect = false;
             this.PersonasDataGridView.Name = "PersonasDataGridView";
             this.PersonasDataGridView.ReadOnly = true;
+            this.PersonasDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.PersonasDataGridView.Size = new System.Drawing.Size(1089, 586);
             this.PersonasDataGridView.TabIndex = 0;
             this.PersonasDataGridView.Text = "dataGridView1";
             // 
             // colNombres
             // 
+            this.colNombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colNombres.HeaderText = "Nombres";
             this.colNombres.Name = "colNombres";
             this.colNombres.ReadOnly = true;
@@ -194,33 +263,46 @@
             // 
             // colApellido
             // 
+            this.colApellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colApellido.HeaderText = "Apellido";
             this.colApellido.Name = "colApellido";
             this.colApellido.ReadOnly = true;
+            this.colApellido.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // colDni
             // 
+            this.colDni.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colDni.HeaderText = "DNI";
             this.colDni.Name = "colDni";
             this.colDni.ReadOnly = true;
+            this.colDni.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colDni.Width = 52;
             // 
             // colFechaNac
             // 
+            this.colFechaNac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colFechaNac.HeaderText = "Fec. Nto.";
             this.colFechaNac.Name = "colFechaNac";
             this.colFechaNac.ReadOnly = true;
+            this.colFechaNac.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colFechaNac.Width = 79;
             // 
             // colSexo
             // 
+            this.colSexo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colSexo.HeaderText = "Sexo";
             this.colSexo.Name = "colSexo";
             this.colSexo.ReadOnly = true;
+            this.colSexo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colSexo.Width = 57;
             // 
             // colLocalidad
             // 
+            this.colLocalidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colLocalidad.HeaderText = "Localidad";
             this.colLocalidad.Name = "colLocalidad";
             this.colLocalidad.ReadOnly = true;
+            this.colLocalidad.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // PanelInferior
             // 
@@ -293,14 +375,21 @@
         private System.Windows.Forms.ToolStripDropDownButton OrdenarToolStripDropDownButton;
         private System.Windows.Forms.ToolStripDropDownButton FiltrarToolStripDropDownButton;
         private System.Windows.Forms.ToolStripButton ActualizarToolStripButton;
+        private System.Windows.Forms.TextBox CantidadTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem OrdenarAZToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OrdenarZAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FiltrarSexoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FiltrarLocalidadToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn colApellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDni;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFechaNac;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSexo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLocalidad;
-        private System.Windows.Forms.TextBox CantidadTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem FitrarSexoFemeninoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FiltrarSexoMasculinoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox FiltrarLocalidadesToolStripComboBox;
     }
 }
 

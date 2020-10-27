@@ -11,5 +11,10 @@ namespace POO10Ejercicio02.Entidades
         public Sexo Sexo { get; set; }
         public string Localidad { get; set; }
         public string dni { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Nombres} {Apellido}";
+        }
     }
 }
