@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using POO10Ejercicio02.Entidades;
 using POO10Ejercicio02.Entidades.Emuns;
 
@@ -29,6 +30,26 @@ namespace POO10Ejercicio02.Datos
             lector.Close();
         }
 
+        public CategoriaSocio GetCategoriaSocio(Persona persona)
+        {
+            CategoriaSocio categoria;
+            if (persona.Edad<=12)
+            {
+                categoria = CategoriaSocio.Menor;
+            }else if (persona.Edad>12 && persona.Edad<=18)
+            {
+                categoria = CategoriaSocio.Juvenil;
+            }else if (persona.Edad>18 && persona.Edad<=40)
+            {
+                categoria = CategoriaSocio.Mayor;
+            }
+            else
+            {
+                categoria = CategoriaSocio.Vitalicio;
+            }
+
+            return categoria;
+        }
         private Persona ConstruirPersona(string linea)
         {
             var campos = linea.Split(';');
@@ -96,13 +117,33 @@ namespace POO10Ejercicio02.Datos
             lector.Close();
             escritor.Close();
             File.Delete(_archivo);
-            File.Copy(_archivoBak,_archivo);
+            File.Move(_archivoBak,_archivo);
 
         }
 
         public void Modificar(Persona persona)
         {
-            
+            StreamReader lector=new StreamReader(_archivo);
+            StreamWriter escritor=new StreamWriter(_archivoBak);
+            while (!lector.EndOfStream)
+            {
+                var linea = lector.ReadLine();
+                var personaEnArchivo = ConstruirPersona(linea);
+                if (personaEnArchivo.dni!=persona.dni)
+                {
+                    
+                    escritor.WriteLine(linea);
+                }
+                else
+                {
+                    linea = ConstruirLinea(persona);
+                    escritor.WriteLine(linea);
+                }
+            }
+            lector.Close();
+            escritor.Close();
+            File.Delete(_archivo);
+            File.Move(_archivoBak,_archivo);
         }
 
         public int GetCantidad()
@@ -118,6 +159,13 @@ namespace POO10Ejercicio02.Datos
         public bool ExisteDni(string dniBuscado)
         {
             return ListaPersonas.Exists(p => p.dni == dniBuscado);
+        }
+
+        public List<Persona> FiltrarPorLocalidad(string localidadBuscar)
+        {
+            return ListaPersonas
+                .Where(p => p.Localidad == localidadBuscar)
+                .ToList();
         }
     }
 }

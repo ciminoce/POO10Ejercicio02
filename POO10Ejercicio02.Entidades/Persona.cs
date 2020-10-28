@@ -14,7 +14,12 @@ namespace POO10Ejercicio02.Entidades
 
         public override string ToString()
         {
-            return $"{Nombres} {Apellido}";
+            return $"{Apellido.ToUpper()}, {Nombres} ";
         }
+
+        public int Edad => (int) Math.
+            Truncate(DateTime.Today.
+                         Subtract(FechaNacimiento)
+                         .TotalDays / 365.25);
     }
 }

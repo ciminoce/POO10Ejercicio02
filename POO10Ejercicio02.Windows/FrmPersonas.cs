@@ -44,12 +44,13 @@ namespace POO10Ejercicio02.Windows
 
         private void SetearFila(DataGridViewRow r, Persona persona)
         {
-            r.Cells[colNombres.Index].Value = persona.Nombres;
-            r.Cells[colApellido.Index].Value = persona.Apellido;
+            r.Cells[colPersona.Index].Value = persona.ToString();
             r.Cells[colDni.Index].Value = persona.dni;
             r.Cells[colFechaNac.Index].Value = persona.FechaNacimiento.ToShortDateString();
             r.Cells[colSexo.Index].Value = persona.Sexo;
             r.Cells[colLocalidad.Index].Value = persona.Localidad;
+            r.Cells[colEdad.Index].Value = persona.Edad;
+            r.Cells[colCategoria.Index].Value = repositorio.GetCategoriaSocio(persona);
 
             r.Tag = persona;
         }
@@ -64,14 +65,36 @@ namespace POO10Ejercicio02.Windows
         private List<Persona> lista;
         private void FrmPersonas_Load(object sender, EventArgs e)
         {
+            CargarLocalidadesEnCombo();
             repositorio=new RepositorioDePersonas();
             if (repositorio.GetCantidad()>0)
             {
-                lista = repositorio.GetLista();
-                MostrarDatosEnGrilla();
+                CargarTodosLosDatosEnGrilla();
             }
 
             MostrarCantidadDePersonas();
+        }
+
+        private void CargarTodosLosDatosEnGrilla()
+        {
+            lista = repositorio.GetLista();
+            MostrarDatosEnGrilla();
+        }
+
+        private void CargarLocalidadesEnCombo()
+        {
+            //Cargo la colección Items con datos usando el método Add.
+            FiltrarLocalidadesToolStripComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            FiltrarLocalidadesToolStripComboBox.Items.Add("Seleccione Localidad");
+
+            FiltrarLocalidadesToolStripComboBox.Items.Add("Lobos");
+            FiltrarLocalidadesToolStripComboBox.Items.Add("Cañuelas");
+            FiltrarLocalidadesToolStripComboBox.Items.Add("Monte");
+            FiltrarLocalidadesToolStripComboBox.Items.Add("Roque Pérez");
+            FiltrarLocalidadesToolStripComboBox.Items.Add("Navarro");
+            
+            FiltrarLocalidadesToolStripComboBox.SelectedIndex = 0;//Posiciona el combo en el primer item
+
         }
 
         private void MostrarCantidadDePersonas()
@@ -111,6 +134,44 @@ namespace POO10Ejercicio02.Windows
             PersonasDataGridView.Rows.Remove(r);
             MessageBox.Show("Registro borrado", "Mensaje", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+
+        private void EditarToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (PersonasDataGridView.SelectedRows.Count==0)
+            {
+                return;
+            }
+
+            DataGridViewRow r = PersonasDataGridView.SelectedRows[0];
+            Persona persona = (Persona) r.Tag;
+            FrmPersonasAE frm=new FrmPersonasAE(repositorio){Text = "Editar Persona"};
+            frm.SetPersona(persona);
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr==DialogResult.OK)
+            {
+                repositorio.Modificar(persona);
+                SetearFila(r,persona);
+                MessageBox.Show("Registro Editado", "Mensaje",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void FiltrarLocalidadesToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (FiltrarLocalidadesToolStripComboBox.SelectedIndex==0)
+            {
+                return;
+            }
+
+            lista = repositorio
+                .FiltrarPorLocalidad(FiltrarLocalidadesToolStripComboBox.Text);
+            MostrarDatosEnGrilla();
+        }
+
+        private void ActualizarToolStripButton_Click(object sender, EventArgs e)
+        {
+            CargarTodosLosDatosEnGrilla();
         }
     }
 }

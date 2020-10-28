@@ -14,11 +14,31 @@ namespace POO10Ejercicio02.Windows
             this.repositorio = repositorio;
         }
 
+        private bool EsModificacion = false;
         private RepositorioDePersonas repositorio;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             CargarDatosComboLocalidades();
+            if (persona!=null)
+            {
+                EsModificacion = true;
+                DniTextBox.Enabled = false;
+                NombreTextBox.Text = persona.Nombres;
+                ApellidoTextBox.Text = persona.Apellido;
+                DniTextBox.Text = persona.dni;
+                FechaNacimientoDateTimePicker.Value = persona.FechaNacimiento;
+                if (persona.Sexo==Sexo.Femenino)
+                {
+                    FemeninoRadioButton.Checked = true;
+                }
+                else
+                {
+                    MasculinoRadioButton.Checked = true;
+                }
+
+                LocalidadesComboBox.Text = persona.Localidad;
+            }
         }
 
         private void CargarDatosComboLocalidades()
@@ -83,7 +103,7 @@ namespace POO10Ejercicio02.Windows
             {
                 valido = false;
                 errorProvider1.SetError(DniTextBox,"Debe ingresar un DNI");
-            }else if (repositorio.ExisteDni(DniTextBox.Text))
+            }else if (repositorio.ExisteDni(DniTextBox.Text) && !EsModificacion)
             {
                 valido = false;
                 errorProvider1.SetError(DniTextBox,"DND repetido");
@@ -94,6 +114,11 @@ namespace POO10Ejercicio02.Windows
         public Persona GetPersona()
         {
             return persona;
+        }
+
+        public void SetPersona(Persona persona)
+        {
+            this.persona = persona;
         }
     }
 }

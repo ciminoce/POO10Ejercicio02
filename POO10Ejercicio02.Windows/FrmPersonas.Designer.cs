@@ -48,12 +48,13 @@
             this.SalirToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PersonasDataGridView = new System.Windows.Forms.DataGridView();
-            this.colNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPersona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDni = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLocalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEdad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelInferior = new System.Windows.Forms.Panel();
             this.CantidadTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -112,6 +113,7 @@
             this.EditarToolStripButton.Size = new System.Drawing.Size(44, 59);
             this.EditarToolStripButton.Text = "Editar";
             this.EditarToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.EditarToolStripButton.Click += new System.EventHandler(this.EditarToolStripButton_Click);
             // 
             // toolStripSeparator1
             // 
@@ -195,6 +197,7 @@
             // 
             this.FiltrarLocalidadesToolStripComboBox.Name = "FiltrarLocalidadesToolStripComboBox";
             this.FiltrarLocalidadesToolStripComboBox.Size = new System.Drawing.Size(121, 23);
+            this.FiltrarLocalidadesToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.FiltrarLocalidadesToolStripComboBox_SelectedIndexChanged);
             // 
             // ActualizarToolStripButton
             // 
@@ -205,6 +208,7 @@
             this.ActualizarToolStripButton.Size = new System.Drawing.Size(63, 59);
             this.ActualizarToolStripButton.Text = "Actualizar";
             this.ActualizarToolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ActualizarToolStripButton.Click += new System.EventHandler(this.ActualizarToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -237,12 +241,13 @@
             this.PersonasDataGridView.AllowUserToDeleteRows = false;
             this.PersonasDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PersonasDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colNombres,
-            this.colApellido,
+            this.colPersona,
             this.colDni,
             this.colFechaNac,
             this.colSexo,
-            this.colLocalidad});
+            this.colLocalidad,
+            this.colEdad,
+            this.colCategoria});
             this.PersonasDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PersonasDataGridView.Location = new System.Drawing.Point(0, 0);
             this.PersonasDataGridView.MultiSelect = false;
@@ -253,21 +258,13 @@
             this.PersonasDataGridView.TabIndex = 0;
             this.PersonasDataGridView.Text = "dataGridView1";
             // 
-            // colNombres
+            // colPersona
             // 
-            this.colNombres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colNombres.HeaderText = "Nombres";
-            this.colNombres.Name = "colNombres";
-            this.colNombres.ReadOnly = true;
-            this.colNombres.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // colApellido
-            // 
-            this.colApellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colApellido.HeaderText = "Apellido";
-            this.colApellido.Name = "colApellido";
-            this.colApellido.ReadOnly = true;
-            this.colApellido.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colPersona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPersona.HeaderText = "Persona";
+            this.colPersona.Name = "colPersona";
+            this.colPersona.ReadOnly = true;
+            this.colPersona.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // colDni
             // 
@@ -303,6 +300,19 @@
             this.colLocalidad.Name = "colLocalidad";
             this.colLocalidad.ReadOnly = true;
             this.colLocalidad.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // colEdad
+            // 
+            this.colEdad.HeaderText = "Edad";
+            this.colEdad.Name = "colEdad";
+            this.colEdad.ReadOnly = true;
+            this.colEdad.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // colCategoria
+            // 
+            this.colCategoria.HeaderText = "Categoría";
+            this.colCategoria.Name = "colCategoria";
+            this.colCategoria.ReadOnly = true;
             // 
             // PanelInferior
             // 
@@ -381,15 +391,16 @@
         private System.Windows.Forms.ToolStripMenuItem OrdenarZAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FiltrarSexoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FiltrarLocalidadToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNombres;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colApellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDni;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFechaNac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSexo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLocalidad;
         private System.Windows.Forms.ToolStripMenuItem FitrarSexoFemeninoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FiltrarSexoMasculinoToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox FiltrarLocalidadesToolStripComboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSexo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLocalidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEdad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPersona;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFechaNac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCategoria;
     }
 }
 
